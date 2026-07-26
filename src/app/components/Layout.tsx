@@ -56,7 +56,8 @@ export type Page =
   | "forms"
   | "insights"
   | "analytics"
-  | "billing";
+  | "billing"
+  | "contact-me";
 
 const nav: { id: Page; label: string; icon: React.ElementType; badge?: number }[] = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },

@@ -17,6 +17,7 @@ import { Forms } from "./components/pages/Forms";
 import { Insights } from "./components/pages/Insights";
 import { Analytics } from "./components/pages/Analytics";
 import { Billing } from "./components/pages/Billing";
+import { ContactMe } from "./components/pages/ContactMe";
 import { AuthScreen } from "./components/AuthScreen";
 import { UpgradeModal } from "./components/UpgradeModal";
 import { LandingPage } from "./components/landing/LandingPage";
@@ -27,7 +28,11 @@ import { Toaster } from "./components/ui/sonner";
 import { toast } from "sonner";
 
 function Workspace() {
-  const [page, setPage] = useState<Page>("dashboard");
+  const getInitialPage = (): Page => {
+    const hash = window.location.hash.replace("#", "");
+    return (hash as Page) || "dashboard";
+  };
+  const [page, setPageState] = useState<Page>(getInitialPage);
   const [segment, setSegment] = useState<Segment | "all">("all");
   const [dark, setDark] = useState(false);
   const { refresh } = useSubscription();
@@ -35,6 +40,23 @@ function Workspace() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  const setPage = (newPage: Page) => {
+    setPageState(newPage);
+    window.history.pushState(null, "", `#${newPage}`);
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const hash = window.location.hash.replace("#", "");
+      setPageState((hash as Page) || "dashboard");
+    };
+    window.addEventListener("popstate", handlePopState);
+    if (!window.location.hash) {
+      window.history.replaceState(null, "", `#${page}`);
+    }
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   // Handle the Stripe / simulated checkout redirect (?upgrade=success|cancel).
   useEffect(() => {
@@ -69,6 +91,7 @@ function Workspace() {
         {page === "insights" && <Insights />}
         {page === "analytics" && <Analytics />}
         {page === "billing" && <Billing />}
+        {page === "contact-me" && <ContactMe />}
       </Layout>
       <UpgradeModal onGoToBilling={() => setPage("billing")} />
     </StoreProvider>

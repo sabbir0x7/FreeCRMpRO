@@ -81,6 +81,9 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           <h1>Dashboard</h1>
           <p className="text-sm text-muted-foreground">Live metrics across your {segment === "all" ? "workspace" : "segment"}.</p>
         </div>
+        <Button onClick={() => setPage("contact-me")} className="bg-gradient-to-r from-brand to-brand/80 text-brand-foreground shadow-md transition-all hover:scale-105 hover:shadow-lg">
+          <Sparkles className="mr-2 size-4" /> Hire Me
+        </Button>
       </div>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
