@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import logoImg from '../../../assets/images/logo.png';
 
 export interface LandingNavbarProps {
   onGetStarted: () => void;
@@ -33,8 +34,7 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-1 cursor-pointer">
-          <span className="font-display font-bold text-xl text-foreground">FreeCRMPro</span>
-          <span className="w-2 h-2 rounded-full bg-brand"></span>
+          <img src={logoImg} alt="FreeCRMPro" className="h-8 w-auto" />
         </div>
 
         {/* Center Nav Links - Desktop */}
