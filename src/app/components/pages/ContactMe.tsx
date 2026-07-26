@@ -1,5 +1,6 @@
 import { MessageCircle, Mail, Globe, Phone, ExternalLink } from "lucide-react";
 import { Button } from "../ui/button";
+import bannerImg from "../../../assets/images/fiverr-promo-banner.png";
 
 export function ContactMe() {
   return (
@@ -25,7 +26,7 @@ export function ContactMe() {
         <div className="w-full md:w-1/2 rounded-xl overflow-hidden border border-white/10 dark:border-white/5 shadow-xl relative group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
           <img 
-            src="/src/assets/images/fiverr-promo-banner.png" 
+            src={bannerImg} 
             alt="Promotional Banner" 
             className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
           />
