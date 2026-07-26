@@ -36,7 +36,7 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
         <Logo 
           onClick={() => {
             window.location.hash = '';
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }} 
         />
 
