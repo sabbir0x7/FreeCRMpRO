@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import logoImg from '../../../assets/images/logo.png';
+import { Logo } from '../ui/Logo';
 
 export interface LandingNavbarProps {
   onGetStarted: () => void;
@@ -33,9 +33,12 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
         }`}
       >
         {/* Logo */}
-        <div className="flex items-center gap-1 cursor-pointer">
-          <img src={logoImg} alt="FreeCRMPro" className="h-8 w-auto drop-shadow-sm" />
-        </div>
+        <Logo 
+          onClick={() => {
+            window.location.hash = '';
+            window.scrollTo(0, 0);
+          }} 
+        />
 
         {/* Center Nav Links - Desktop */}
         <div className="hidden md:flex items-center gap-8">

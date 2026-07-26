@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useAuth } from "../auth";
+import { Logo } from "./ui/Logo";
 
 export function AuthScreen({ onBack }: { onBack?: () => void }) {
   const { signIn, signUp } = useAuth();
@@ -44,14 +45,11 @@ export function AuthScreen({ onBack }: { onBack?: () => void }) {
               Back to home
             </button>
           )}
-          <div className="mb-6 flex items-center gap-2">
-            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand/80 text-brand-foreground shadow-lg">
-              <Sparkles className="size-5" />
-            </div>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700 }} className="text-2xl text-foreground">
-              FreeCRM<span className="text-[var(--brand)]">pRO</span>
-            </span>
-          </div>
+          <Logo 
+            className="justify-center mb-8" 
+            iconClassName="h-10 w-10" 
+            textClassName="text-2xl" 
+          />
 
           <h1 className="mb-1 text-2xl font-semibold text-foreground tracking-tight">
             {mode === "signin" ? "Welcome back" : "Create your account"}

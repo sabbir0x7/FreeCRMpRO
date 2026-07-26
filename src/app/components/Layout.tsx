@@ -31,6 +31,7 @@ import { useAuth } from "../auth";
 import { useSubscription } from "../subscription";
 import { ContactDialog } from "./forms";
 import { Sparkles as SparklesIcon } from "lucide-react";
+import { Logo } from "./ui/Logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -102,13 +103,8 @@ export function Layout({
     <div className="flex h-screen w-full overflow-hidden text-foreground">
       {/* Sidebar */}
       <aside className={cn("hidden shrink-0 flex-col glass-sidebar m-4 mr-0 h-[calc(100vh-2rem)] rounded-2xl border border-white/20 dark:border-white/10 shadow-lg md:flex transition-all duration-300", collapsed ? "w-16" : "w-64")}>
-        <div className="flex h-16 items-center gap-2 px-5">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-[var(--brand)] text-[var(--brand-foreground)]">
-            <Sparkles className="size-4" />
-          </div>
-          <span style={{ fontFamily: "var(--font-display)", fontWeight: 700 }} className="text-lg">
-            FreeCRM<span className="text-[var(--brand)]">pRO</span>
-          </span>
+        <div className="flex h-16 items-center px-4 pt-4 md:px-6">
+          <Logo onClick={() => setPage("dashboard")} />
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
