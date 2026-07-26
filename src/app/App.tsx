@@ -101,6 +101,15 @@ function Workspace() {
 function Gate() {
   const { userId, loading } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
+  const [isContactRoute, setIsContactRoute] = useState(() => window.location.hash.replace("#", "") === "contact-me");
+
+  useEffect(() => {
+    const handleHash = () => {
+      setIsContactRoute(window.location.hash.replace("#", "") === "contact-me");
+    };
+    window.addEventListener("popstate", handleHash);
+    return () => window.removeEventListener("popstate", handleHash);
+  }, []);
 
   if (loading) {
     return (
@@ -115,6 +124,24 @@ function Gate() {
       <SubscriptionProvider>
         <Workspace />
       </SubscriptionProvider>
+    );
+  }
+
+  if (isContactRoute) {
+    return (
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        <div className="fixed top-4 left-4 z-50">
+          <button 
+            onClick={() => window.location.hash = ''} 
+            className="rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-md p-2 hover:bg-white/30 border border-white/20 shadow-sm transition-all text-sm font-medium"
+          >
+            &larr; Back to Home
+          </button>
+        </div>
+        <div className="pt-24 pb-12 max-w-5xl mx-auto px-4">
+           <ContactMe />
+        </div>
+      </div>
     );
   }
 

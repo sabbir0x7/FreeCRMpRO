@@ -53,6 +53,12 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
         {/* Action Buttons - Desktop */}
         <div className="hidden md:flex items-center gap-4">
           <button 
+            onClick={() => window.location.hash = '#contact-me'}
+            className="text-sm font-medium text-brand hover:text-brand/80 transition-colors px-3 py-2"
+          >
+            Contact Me
+          </button>
+          <button 
             onClick={onLogin} 
             className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-3 py-2"
           >
@@ -90,6 +96,12 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
             </a>
           ))}
           <div className="flex flex-col gap-3 pt-2">
+            <button 
+              onClick={() => { setIsMobileMenuOpen(false); window.location.hash = '#contact-me'; }} 
+              className="w-full text-left py-2 text-sm font-medium text-brand hover:text-brand/80 transition-colors"
+            >
+              Contact Me
+            </button>
             <button 
               onClick={() => { setIsMobileMenuOpen(false); onLogin(); }} 
               className="w-full text-left py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
