@@ -21,10 +21,10 @@ export function LandingPage({
       <main>
         <HeroSection onGetStarted={onGetStarted} />
         <ValueSection />
-        <FeaturesSection />
-        <ProductShowcase />
+        <div id="features"><FeaturesSection /></div>
+        <div id="how-it-works"><ProductShowcase /></div>
         <DeveloperPromo />
-        <PricingSection onGetStarted={onGetStarted} />
+        <div id="pricing"><PricingSection onGetStarted={onGetStarted} /></div>
         <FinalCTA onGetStarted={onGetStarted} onLogin={onLogin} />
       </main>
       <LandingFooter onLogin={onLogin} />

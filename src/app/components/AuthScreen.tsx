@@ -37,12 +37,13 @@ export function AuthScreen({ onBack }: { onBack?: () => void }) {
         
         <div className="relative z-10">
           {onBack && (
-            <div className="absolute -top-4 -left-4">
-              <Logo 
-                onClick={onBack}
-                className="rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-md p-2 hover:bg-white/30 border border-white/20 shadow-sm transition-all scale-75 origin-top-left" 
-              />
-            </div>
+            <button
+              onClick={onBack}
+              className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="size-4" />
+              Back to home
+            </button>
           )}
           <Logo 
             className="justify-center mb-8" 

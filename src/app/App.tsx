@@ -21,7 +21,6 @@ import { ContactMe } from "./components/pages/ContactMe";
 import { AuthScreen } from "./components/AuthScreen";
 import { UpgradeModal } from "./components/UpgradeModal";
 import { LandingPage } from "./components/landing/LandingPage";
-import { Logo } from "./components/ui/Logo";
 import { StoreProvider, type Segment } from "./store";
 import { AuthProvider, useAuth } from "./auth";
 import { SubscriptionProvider, useSubscription } from "./subscription";
@@ -132,10 +131,12 @@ function Gate() {
     return (
       <div className="min-h-screen bg-background relative overflow-hidden">
         <div className="fixed top-4 left-4 z-50">
-          <Logo 
+          <button 
             onClick={() => window.location.hash = ''} 
-            className="rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-md p-2 hover:bg-white/30 border border-white/20 shadow-sm transition-all" 
-          />
+            className="rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-md p-2 hover:bg-white/30 border border-white/20 shadow-sm transition-all text-sm font-medium"
+          >
+            &larr; Back to Home
+          </button>
         </div>
         <div className="pt-24 pb-12 max-w-5xl mx-auto px-4">
            <ContactMe />
