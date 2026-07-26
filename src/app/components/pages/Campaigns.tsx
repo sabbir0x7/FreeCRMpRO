@@ -48,18 +48,18 @@ export function Campaigns() {
       ) : (
         <>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Total budget</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalBudget)}</div></div>
-            <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Spend</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalSpend)}</div></div>
-            <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Leads generated</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{totalLeads}</div></div>
-            <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Conversion rate</div><div className="mt-1 flex items-center gap-1 text-2xl" style={{ fontWeight: 600 }}><TrendingUp className="size-4 text-[var(--success)]" />{overallRate}%</div></div>
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Total budget</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalBudget)}</div></div>
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Spend</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalSpend)}</div></div>
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Leads generated</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{totalLeads}</div></div>
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Conversion rate</div><div className="mt-1 flex items-center gap-1 text-2xl" style={{ fontWeight: 600 }}><TrendingUp className="size-4 text-[var(--success)]" />{overallRate}%</div></div>
           </div>
 
-          <div className="overflow-hidden rounded-xl border bg-card">
-            <div className="hidden grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] gap-3 border-b px-4 py-2.5 text-xs text-muted-foreground md:grid">
+          <div className="glass-surface overflow-hidden rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
+            <div className="hidden grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] gap-3 border-b border-white/10 dark:border-white/5 px-4 py-2.5 text-xs text-muted-foreground md:grid">
               <span>Campaign</span><span>Channel</span><span>Budget / Spend</span><span>Leads</span><span>Conv. rate</span><span></span>
             </div>
             {campaigns.map((c) => (
-              <div key={c.id} className="group grid grid-cols-1 gap-2 border-b px-4 py-3 last:border-0 md:grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] md:items-center md:gap-3">
+              <div key={c.id} className="group grid grid-cols-1 gap-2 border-b border-white/10 dark:border-white/5 px-4 py-3 last:border-0 md:grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] md:items-center md:gap-3 transition-colors hover:bg-white/5 dark:hover:bg-white/5">
                 <div>
                   <div className="flex items-center gap-2"><span className="text-sm" style={{ fontWeight: 500 }}>{c.name}</span><span className={cn("rounded-full px-2 py-0.5 text-[11px]", statusStyle[c.status])}>{c.status}</span></div>
                   <div className="text-xs text-muted-foreground">{c.startDate || "—"} → {c.endDate || "—"}</div>
@@ -68,7 +68,7 @@ export function Campaigns() {
                 <div className="text-sm"><span style={{ fontWeight: 500 }}>{currency(c.spend)}</span><span className="text-muted-foreground"> / {currency(c.budget)}</span><div className="text-xs text-muted-foreground">{currency(cpl(c))}/lead</div></div>
                 <span className="text-sm">{c.leads} <span className="text-xs text-muted-foreground">({c.conversions} won)</span></span>
                 <div className="flex items-center gap-2">
-                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-muted"><div className="h-full bg-[var(--brand)]" style={{ width: `${convRate(c)}%` }} /></div>
+                  <div className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10 dark:bg-white/5"><div className="h-full bg-[var(--brand)]" style={{ width: `${convRate(c)}%` }} /></div>
                   <span className="text-sm" style={{ fontWeight: 500 }}>{convRate(c)}%</span>
                 </div>
                 <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">

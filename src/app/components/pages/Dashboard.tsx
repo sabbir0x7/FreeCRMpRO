@@ -91,7 +91,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="rounded-xl border bg-card p-5 lg:col-span-2">
+        <div className="glass-surface rounded-xl border border-white/20 dark:border-white/10 p-5 shadow-sm lg:col-span-2">
           <div className="mb-4">
             <h3>Pipeline Added</h3>
             <p className="text-sm text-muted-foreground">Deal value created per month (last 6 months)</p>
@@ -107,7 +107,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           </ResponsiveContainer>
         </div>
 
-        <div className="rounded-xl border bg-card p-5">
+        <div className="glass-surface rounded-xl border border-white/20 dark:border-white/10 p-5 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h3>Tasks</h3>
             <TaskDialog trigger={<button className="flex items-center gap-1 text-sm text-[var(--brand)]"><Plus className="size-3.5" /> Add</button>} />
@@ -119,7 +119,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           ) : (
             <div className="space-y-3">
               {openTasks.slice(0, 6).map((t) => (
-                <button key={t.id} onClick={() => store.dispatch({ type: "task/toggle", id: t.id })} className="flex w-full items-start gap-3 text-left">
+                <button key={t.id} onClick={() => store.dispatch({ type: "task/toggle", id: t.id })} className="flex w-full items-start gap-3 text-left rounded-lg p-2 hover:bg-white/5 dark:hover:bg-white/5 transition-colors">
                   <Circle className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
                   <div className="min-w-0 flex-1">
                     <div className="text-sm">{t.title}</div>
@@ -133,7 +133,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="rounded-xl border bg-card p-5 lg:col-span-2">
+        <div className="glass-surface rounded-xl border border-white/20 dark:border-white/10 p-5 shadow-sm lg:col-span-2">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h3>Top Leads</h3>
@@ -146,7 +146,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           ) : (
             <div className="space-y-1">
               {hotLeads.map((c) => (
-                <div key={c.id} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-accent">
+                <div key={c.id} className="flex items-center gap-3 rounded-lg px-2 py-2 hover:bg-white/5 dark:hover:bg-white/5 transition-colors">
                   <Avatar className="size-9"><AvatarFallback>{c.name.slice(0, 2).toUpperCase()}</AvatarFallback></Avatar>
                   <div className="min-w-0 flex-1">
                     <div className="truncate text-sm" style={{ fontWeight: 500 }}>{c.name}</div>
@@ -163,7 +163,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           )}
         </div>
 
-        <div className="rounded-xl border bg-gradient-to-b from-[var(--brand-soft)] to-card p-5">
+        <div className="glass-surface rounded-xl border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent p-5 shadow-sm">
           <div className="mb-4 flex items-center gap-2">
             <Sparkles className="size-4 text-[var(--brand)]" />
             <h3>Insights</h3>
@@ -173,7 +173,7 @@ export function Dashboard({ segment, setPage }: { segment: Segment | "all"; setP
           ) : (
             <div className="space-y-3">
               {insights.map((a) => (
-                <div key={a.id} className="rounded-lg border bg-card/70 p-3">
+                <div key={a.id} className="glass-surface rounded-lg border border-white/10 dark:border-white/5 p-3 shadow-sm">
                   <div className="text-sm" style={{ fontWeight: 500 }}>{a.title}</div>
                   <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{a.detail}</p>
                   <button onClick={() => setPage("insights")} className="mt-2 flex items-center gap-1 text-xs text-[var(--brand)]">

@@ -60,13 +60,13 @@ export const ProductShowcase: React.FC = () => {
           transition={{ duration: 0.7 }}
           className="mt-14 max-w-5xl mx-auto"
         >
-          <div className="bg-card rounded-2xl shadow-xl border border-border/50 overflow-hidden">
+          <div className="glass-surface rounded-[24px] shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden backdrop-blur-xl">
             {/* Window bar */}
-            <div className="h-10 bg-muted/60 flex items-center px-4 gap-2 border-b border-border/30 relative">
-              <div className="flex gap-1.5 absolute left-4">
-                <div className="w-3 h-3 rounded-full bg-red-400/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
-                <div className="w-3 h-3 rounded-full bg-green-400/80" />
+            <div className="h-12 bg-white/5 dark:bg-black/10 flex items-center px-4 gap-2 border-b border-white/10 dark:border-white/5 relative">
+              <div className="flex gap-2 absolute left-4">
+                <div className="w-3 h-3 rounded-full bg-red-400 shadow-sm" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-sm" />
+                <div className="w-3 h-3 rounded-full bg-green-400 shadow-sm" />
               </div>
               <div className="w-full text-center text-xs text-muted-foreground font-medium">
                 FreeCRMPro Dashboard
@@ -74,10 +74,10 @@ export const ProductShowcase: React.FC = () => {
             </div>
 
             {/* Dashboard Content */}
-            <div className="p-4 sm:p-6 bg-background">
+            <div className="p-4 sm:p-6 bg-transparent">
               {/* Stat Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="bg-card rounded-lg border border-border/30 p-4">
+                <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs text-muted-foreground font-medium">
                       Total Contacts
@@ -86,7 +86,7 @@ export const ProductShowcase: React.FC = () => {
                   </div>
                   <div className="text-xl font-bold text-foreground">156</div>
                 </div>
-                <div className="bg-card rounded-lg border border-border/30 p-4">
+                <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs text-muted-foreground font-medium">
                       Active Deals
@@ -95,7 +95,7 @@ export const ProductShowcase: React.FC = () => {
                   </div>
                   <div className="text-xl font-bold text-foreground">23</div>
                 </div>
-                <div className="bg-card rounded-lg border border-border/30 p-4">
+                <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs text-muted-foreground font-medium">
                       Pipeline Value
@@ -104,7 +104,7 @@ export const ProductShowcase: React.FC = () => {
                   </div>
                   <div className="text-xl font-bold text-foreground">$128.5K</div>
                 </div>
-                <div className="bg-card rounded-lg border border-border/30 p-4">
+                <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs text-muted-foreground font-medium">
                       Tasks Due
@@ -117,7 +117,7 @@ export const ProductShowcase: React.FC = () => {
 
               {/* Charts & Pipeline */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div className="md:col-span-2 bg-card rounded-lg border border-border/30 p-4 h-52 flex flex-col">
+                <div className="md:col-span-2 glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 h-52 flex flex-col shadow-sm">
                   <div className="text-sm font-semibold text-foreground mb-4">
                     Revenue Overview
                   </div>
@@ -143,7 +143,7 @@ export const ProductShowcase: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-1 bg-card rounded-lg border border-border/30 p-4 h-52 flex flex-col">
+                <div className="md:col-span-1 glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 h-52 flex flex-col shadow-sm">
                   <div className="text-sm font-semibold text-foreground mb-4">
                     Pipeline
                   </div>
@@ -171,8 +171,8 @@ export const ProductShowcase: React.FC = () => {
         {/* Feature Highlights Below Mockup */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
           {highlights.map((item, index) => (
-            <div key={index} className="text-center">
-              <div className="w-10 h-10 rounded-lg bg-brand-soft flex items-center justify-center mx-auto mb-3">
+            <div key={index} className="text-center group">
+              <div className="w-12 h-12 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110 shadow-sm">
                 <item.icon className="w-5 h-5 text-brand" />
               </div>
               <h3 className="text-sm font-medium text-foreground">

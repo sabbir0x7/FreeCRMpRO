@@ -113,10 +113,10 @@ function Builder({ form, onBack }: { form: LeadForm; onBack: () => void }) {
           <h3>Fields</h3>
           <div className="space-y-2">
             {live.fields.map((f) => (
-              <div key={f.id} className="flex items-center gap-2 rounded-lg border bg-card p-2">
+              <div key={f.id} className="glass-surface flex items-center gap-2 rounded-lg border border-white/10 dark:border-white/5 p-2 shadow-sm">
                 <GripVertical className="size-4 shrink-0 text-muted-foreground" />
                 <Input value={f.label} onChange={(e) => setField(f.id, { label: e.target.value })} className="h-8" />
-                <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 text-[11px] capitalize text-muted-foreground">{f.type}</span>
+                <span className="shrink-0 rounded bg-white/10 dark:bg-white/5 px-1.5 py-0.5 text-[11px] capitalize text-muted-foreground">{f.type}</span>
                 <label className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground"><input type="checkbox" checked={f.required} onChange={(e) => setField(f.id, { required: e.target.checked })} /> Req</label>
                 <button onClick={() => removeField(f.id)} className="shrink-0 text-muted-foreground hover:text-[var(--destructive)]"><Trash2 className="size-4" /></button>
               </div>
@@ -132,7 +132,7 @@ function Builder({ form, onBack }: { form: LeadForm; onBack: () => void }) {
         {/* Live preview / test submit */}
         <div className="space-y-3">
           <h3>Preview & test</h3>
-          <div className="space-y-3 rounded-xl border bg-card p-4">
+          <div className="glass-surface space-y-3 rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
             {live.fields.map((f) => (
               <div key={f.id} className="space-y-1.5">
                 <Label>{f.label}{f.required && <span className="text-[var(--destructive)]"> *</span>}</Label>
@@ -154,9 +154,9 @@ function Builder({ form, onBack }: { form: LeadForm; onBack: () => void }) {
       <div>
         <h3 className="mb-2">Submissions ({formSubs.length})</h3>
         {formSubs.length === 0 ? (
-          <p className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground">No submissions yet. Share the link or submit a test entry above.</p>
+          <p className="rounded-xl border border-dashed border-white/20 dark:border-white/10 p-4 text-sm text-muted-foreground">No submissions yet. Share the link or submit a test entry above.</p>
         ) : (
-          <div className="divide-y rounded-xl border bg-card">
+          <div className="glass-surface divide-y divide-white/10 dark:divide-white/5 rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
             {formSubs.map((s) => (
               <div key={s.id} className="p-3 text-sm">
                 <div className="mb-1 text-xs text-muted-foreground">{relativeTime(s.createdAt)}</div>
@@ -207,14 +207,14 @@ export function Forms() {
           {forms.map((f) => {
             const count = submissions.filter((s) => s.formId === f.id).length;
             return (
-              <div key={f.id} className={cn("group cursor-pointer rounded-xl border bg-card p-5 transition-shadow hover:shadow-sm")} onClick={() => setEditing(f.id)}>
+              <div key={f.id} className={cn("glass-surface group cursor-pointer rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5")} onClick={() => setEditing(f.id)}>
                 <div className="flex items-start justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]"><FileInput className="size-5" /></div>
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand shadow-sm"><FileInput className="size-5" /></div>
                   <button onClick={(e) => { e.stopPropagation(); dispatch({ type: "form/delete", id: f.id }); toast.success("Form deleted"); }} className="text-muted-foreground opacity-0 transition-opacity hover:text-[var(--destructive)] group-hover:opacity-100"><Trash2 className="size-4" /></button>
                 </div>
                 <h3 className="mt-3">{f.name}</h3>
                 <p className="text-sm text-muted-foreground">{f.fields.length} fields · {segmentLabels[f.segment]}</p>
-                <div className="mt-3 flex items-center gap-1 border-t pt-3 text-sm text-muted-foreground"><AiChip>{count} submissions</AiChip></div>
+                <div className="mt-3 flex items-center gap-1 border-t border-white/10 dark:border-white/5 pt-3 text-sm text-muted-foreground"><AiChip>{count} submissions</AiChip></div>
               </div>
             );
           })}

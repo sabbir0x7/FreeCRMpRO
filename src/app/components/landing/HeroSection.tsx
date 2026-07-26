@@ -19,7 +19,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
         
         {/* LEFT COLUMN */}
         <div className="flex flex-col items-start">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-soft text-brand text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 border border-brand/20 text-brand text-sm font-medium shadow-sm">
             <Sparkles size={16} />
             <span>Smart CRM for Growing Businesses</span>
           </div>
@@ -37,14 +37,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
           <div className="mt-8 flex flex-wrap gap-4">
             <button 
               onClick={onGetStarted}
-              className="flex items-center gap-2 bg-brand text-brand-foreground hover:bg-brand/90 px-7 py-3 rounded-lg text-base font-medium transition-all shadow-md hover:shadow-lg"
+              className="flex items-center gap-2 bg-gradient-to-r from-brand to-brand/80 text-brand-foreground px-7 py-3 rounded-xl text-base font-medium transition-all shadow-[0_0_15px_rgba(109,40,217,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(109,40,217,0.5)]"
             >
               Get Started Free
               <ArrowRight size={16} />
             </button>
             <a 
               href="#features"
-              className="inline-flex items-center justify-center border border-border text-foreground hover:bg-muted px-7 py-3 rounded-lg text-base font-medium transition-colors"
+              className="glass-surface inline-flex items-center justify-center border border-white/20 dark:border-white/10 text-foreground px-7 py-3 rounded-xl text-base font-medium transition-all hover:bg-white/50 dark:hover:bg-white/10 shadow-sm"
             >
               Explore Features
             </a>
@@ -67,19 +67,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative w-full max-w-[600px] mx-auto lg:ml-auto"
         >
-          <div className="bg-card rounded-2xl shadow-2xl border border-border/50 overflow-hidden">
+          <div className="glass-surface rounded-[24px] shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden backdrop-blur-xl">
             {/* Window title bar */}
-            <div className="h-8 bg-muted/50 flex items-center gap-2 px-4 border-b border-border/50">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+            <div className="h-10 bg-white/5 dark:bg-black/10 flex items-center gap-2 px-4 border-b border-white/10 dark:border-white/5">
+              <div className="w-3 h-3 rounded-full bg-red-400 shadow-sm"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-sm"></div>
+              <div className="w-3 h-3 rounded-full bg-green-400 shadow-sm"></div>
             </div>
 
             {/* Content area */}
             <div className="p-5 space-y-4">
               {/* Top stat cards row */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-background rounded-lg p-3 border border-border/50 shadow-sm">
+                <div className="glass-surface rounded-xl p-3 border border-white/20 dark:border-white/10 shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground font-medium">Pipeline</span>
                     <TrendingUp size={14} className="text-green-500" />
@@ -87,7 +87,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                   <div className="mt-2 text-lg font-bold text-foreground">$48.5K</div>
                 </div>
                 
-                <div className="bg-background rounded-lg p-3 border border-border/50 shadow-sm">
+                <div className="glass-surface rounded-xl p-3 border border-white/20 dark:border-white/10 shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground font-medium">Active Leads</span>
                     <Users size={14} className="text-brand" />
@@ -95,7 +95,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                   <div className="mt-2 text-lg font-bold text-foreground">24</div>
                 </div>
                 
-                <div className="bg-background rounded-lg p-3 border border-border/50 shadow-sm">
+                <div className="glass-surface rounded-xl p-3 border border-white/20 dark:border-white/10 shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground font-medium">Win Rate</span>
                     <span className="text-xs font-medium text-green-500">+4%</span>
@@ -105,7 +105,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               </div>
 
               {/* Chart area */}
-              <div className="bg-background rounded-lg p-4 border border-border/50 h-32 flex flex-col shadow-sm">
+              <div className="glass-surface rounded-xl p-4 border border-white/20 dark:border-white/10 h-32 flex flex-col shadow-sm">
                 <span className="text-xs text-muted-foreground font-medium mb-2">Revenue</span>
                 <div className="flex-1 w-full relative">
                   <svg viewBox="0 0 300 100" className="w-full h-full absolute inset-0" preserveAspectRatio="none">
@@ -123,7 +123,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
 
               {/* Bottom row */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-background rounded-lg p-3 border border-border/50 shadow-sm">
+                <div className="glass-surface rounded-xl p-3 border border-white/20 dark:border-white/10 shadow-sm">
                   <span className="text-xs text-muted-foreground font-medium block mb-2">Pipeline Stages</span>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                   </div>
                 </div>
 
-                <div className="bg-background rounded-lg p-3 border border-border/50 shadow-sm">
+                <div className="glass-surface rounded-xl p-3 border border-white/20 dark:border-white/10 shadow-sm">
                   <span className="text-xs text-muted-foreground font-medium block mb-2">Recent Activity</span>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">

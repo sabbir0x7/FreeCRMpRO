@@ -30,7 +30,7 @@ export function FinalCTA({ onGetStarted, onLogin }: FinalCTAProps) {
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
           <button
             onClick={onGetStarted}
-            className="inline-flex items-center gap-2 bg-brand text-brand-foreground hover:bg-brand/90 px-8 py-3.5 rounded-lg text-base font-medium transition-all shadow-md hover:shadow-lg"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand/80 text-brand-foreground px-8 py-3.5 rounded-xl text-base font-medium transition-all shadow-[0_0_15px_rgba(109,40,217,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(109,40,217,0.5)] border-none"
           >
             Get Started Free
             <ArrowRight className="w-5 h-5" />
@@ -38,7 +38,7 @@ export function FinalCTA({ onGetStarted, onLogin }: FinalCTAProps) {
           
           <button
             onClick={onLogin}
-            className="inline-flex items-center justify-center border border-border text-foreground hover:bg-muted px-8 py-3.5 rounded-lg text-base font-medium transition-colors"
+            className="glass-surface inline-flex items-center justify-center border border-white/20 dark:border-white/10 text-foreground hover:bg-white/50 dark:hover:bg-white/10 px-8 py-3.5 rounded-xl text-base font-medium transition-all shadow-sm hover:scale-105"
           >
             Log In
           </button>

@@ -36,7 +36,7 @@ export function TrendIcon({ trend }: { trend: "up" | "down" | "flat" }) {
 
 export function AiChip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-[var(--brand-soft)] px-2 py-0.5 text-[11px] text-[var(--brand)]" style={{ fontWeight: 500 }}>
+    <span className="inline-flex items-center gap-1 rounded-full bg-brand/10 border border-brand/20 shadow-sm px-2 py-0.5 text-[11px] text-[var(--brand)]" style={{ fontWeight: 500 }}>
       <Sparkles className="size-3" />
       {children}
     </span>
@@ -57,10 +57,10 @@ export function StatCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border bg-card p-5">
+    <div className="glass-surface rounded-xl border border-white/20 dark:border-white/10 p-5 shadow-sm">
       <div className="flex items-center justify-between">
         <span className="text-sm text-muted-foreground">{label}</span>
-        <div className="flex size-9 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]">
+        <div className="flex size-9 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-[var(--brand)] shadow-sm">
           {icon}
         </div>
       </div>

@@ -19,9 +19,9 @@ function CompanyDetail({ company, onBack }: { company: Company; onBack: () => vo
         <ChevronLeft className="size-4" /> All companies
       </button>
 
-      <div className="flex flex-wrap items-start justify-between gap-3 rounded-xl border bg-card p-5">
+      <div className="glass-surface flex flex-wrap items-start justify-between gap-3 rounded-xl border border-white/20 dark:border-white/10 p-5 shadow-sm">
         <div className="flex gap-4">
-          <div className="flex size-14 items-center justify-center rounded-xl bg-[var(--brand-soft)] text-[var(--brand)]">
+          <div className="flex size-14 items-center justify-center rounded-xl bg-brand/10 border border-brand/20 text-[var(--brand)] shadow-sm">
             <Building className="size-6" />
           </div>
           <div>
@@ -38,17 +38,17 @@ function CompanyDetail({ company, onBack }: { company: Company; onBack: () => vo
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Contacts</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{linked.length}</div></div>
-        <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Deals</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{companyDeals.length}</div></div>
-        <div className="rounded-xl border bg-card p-4"><div className="text-sm text-muted-foreground">Pipeline value</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalValue)}</div></div>
+        <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Contacts</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{linked.length}</div></div>
+        <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Deals</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{companyDeals.length}</div></div>
+        <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm"><div className="text-sm text-muted-foreground">Pipeline value</div><div className="mt-1 text-2xl" style={{ fontWeight: 600 }}>{currency(totalValue)}</div></div>
       </div>
 
       <div>
         <h3 className="mb-2">Linked contacts</h3>
         {linked.length === 0 ? (
-          <p className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground">No contacts with company "{company.name}" yet. Set a contact's Company field to this name to link them.</p>
+          <p className="rounded-xl border border-dashed border-white/20 dark:border-white/10 p-4 text-sm text-muted-foreground">No contacts with company "{company.name}" yet. Set a contact's Company field to this name to link them.</p>
         ) : (
-          <div className="divide-y rounded-xl border bg-card">
+          <div className="glass-surface divide-y divide-white/10 dark:divide-white/5 rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
             {linked.map((c) => (
               <div key={c.id} className="flex items-center justify-between p-3 text-sm">
                 <div><span style={{ fontWeight: 500 }}>{c.name}</span> <span className="text-muted-foreground">· {c.title || c.status}</span></div>
@@ -62,9 +62,9 @@ function CompanyDetail({ company, onBack }: { company: Company; onBack: () => vo
       <div>
         <h3 className="mb-2">Documents</h3>
         {companyDocs.length === 0 ? (
-          <p className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground">No documents linked to this company.</p>
+          <p className="rounded-xl border border-dashed border-white/20 dark:border-white/10 p-4 text-sm text-muted-foreground">No documents linked to this company.</p>
         ) : (
-          <div className="divide-y rounded-xl border bg-card">
+          <div className="glass-surface divide-y divide-white/10 dark:divide-white/5 rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
             {companyDocs.map((d) => (
               <div key={d.id} className="flex items-center justify-between p-3 text-sm">
                 <span style={{ fontWeight: 500 }}>{d.name}.{d.ext}</span>
@@ -111,9 +111,9 @@ export function Companies() {
           {companies.map((c) => {
             const dealCount = deals.filter((d) => d.contactId && contacts.find((x) => x.id === d.contactId)?.company.trim().toLowerCase() === c.name.trim().toLowerCase()).length;
             return (
-              <div key={c.id} className="group cursor-pointer rounded-xl border bg-card p-5 transition-shadow hover:shadow-sm" onClick={() => setSelected(c.id)}>
+              <div key={c.id} className="glass-surface group cursor-pointer rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5" onClick={() => setSelected(c.id)}>
                 <div className="flex items-start justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]"><Building className="size-5" /></div>
+                  <div className="flex size-11 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-[var(--brand)] shadow-sm"><Building className="size-5" /></div>
                   <button
                     onClick={(e) => { e.stopPropagation(); dispatch({ type: "company/delete", id: c.id }); toast.success("Company removed"); }}
                     className="text-muted-foreground opacity-0 transition-opacity hover:text-[var(--destructive)] group-hover:opacity-100"
@@ -123,7 +123,7 @@ export function Companies() {
                 </div>
                 <h3 className="mt-3">{c.name}</h3>
                 <p className="text-sm text-muted-foreground">{c.industry || segmentLabels[c.segment]}</p>
-                <div className="mt-3 flex gap-4 border-t pt-3 text-sm text-muted-foreground">
+                <div className="mt-3 flex gap-4 border-t border-white/10 dark:border-white/5 pt-3 text-sm text-muted-foreground">
                   <span>{contactCount(c.name)} contacts</span>
                   <span>{dealCount} deals</span>
                   <span>{c.size}</span>

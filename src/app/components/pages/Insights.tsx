@@ -92,7 +92,7 @@ export function Insights() {
   return (
     <div className="mx-auto max-w-5xl space-y-6 p-4 md:p-6">
       <div className="flex items-center gap-3">
-        <div className="flex size-11 items-center justify-center rounded-xl bg-[var(--brand)] text-[var(--brand-foreground)]">
+        <div className="flex size-11 items-center justify-center rounded-xl bg-brand/10 border border-brand/20 text-brand shadow-sm">
           <Sparkles className="size-5" />
         </div>
         <div>
@@ -112,12 +112,12 @@ export function Insights() {
           {insights.map((a) => {
             const m = meta[a.type];
             return (
-              <div key={a.id} className="rounded-xl border bg-card p-5">
+              <div key={a.id} className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2 text-sm" style={{ color: m.color, fontWeight: 600 }}>
                     <m.icon className="size-4" /> {m.label}
                   </span>
-                  <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{a.confidence}% confidence</span>
+                  <span className="rounded-full bg-white/10 dark:bg-white/5 px-2 py-0.5 text-xs text-muted-foreground">{a.confidence}% confidence</span>
                 </div>
                 <h3 className="mt-3">{a.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{a.detail}</p>

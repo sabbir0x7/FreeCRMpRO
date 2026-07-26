@@ -61,17 +61,17 @@ export function Tasks() {
           {columns.map((col) => {
             const items = tasks.filter((t) => t.status === col);
             return (
-              <div key={col} className="rounded-xl border bg-muted/30 p-3">
+              <div key={col} className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-3 shadow-sm">
                 <div className="mb-3 flex items-center justify-between px-1">
                   <span className="text-sm" style={{ fontWeight: 600 }}>{col}</span>
-                  <span className="rounded-full bg-background px-2 text-xs text-muted-foreground">{items.length}</span>
+                  <span className="rounded-full bg-white/10 dark:bg-white/5 px-2 text-xs text-muted-foreground">{items.length}</span>
                 </div>
                 <div className="space-y-2">
                   {items.map((t) => {
                     const contact = contacts.find((c) => c.id === t.contactId);
                     const deal = deals.find((d) => d.id === t.dealId);
                     return (
-                      <div key={t.id} className={cn("group rounded-lg border bg-card p-3", isOverdue(t) && "border-[var(--destructive)]/40")}>
+                      <div key={t.id} className={cn("glass-surface group rounded-lg border border-white/10 dark:border-white/5 p-3 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5", isOverdue(t) && "border-[var(--destructive)]/40")}>
                         <div className="flex items-start justify-between gap-2">
                           <span className={cn("text-sm", t.status === "Done" && "text-muted-foreground line-through")} style={{ fontWeight: 500 }}>{t.title}</span>
                           <button onClick={() => { dispatch({ type: "task/delete", id: t.id }); toast.success("Task deleted"); }} className="text-muted-foreground opacity-0 transition-opacity hover:text-[var(--destructive)] group-hover:opacity-100"><Trash2 className="size-3.5" /></button>

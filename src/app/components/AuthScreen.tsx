@@ -29,64 +29,71 @@ export function AuthScreen({ onBack }: { onBack?: () => void }) {
   }
 
   return (
-    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--brand-soft)] to-background p-4">
-      <div className="w-full max-w-sm rounded-2xl border bg-card p-8 shadow-sm">
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="size-4" />
-            Back to home
-          </button>
-        )}
-        <div className="mb-6 flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-lg bg-[var(--brand)] text-[var(--brand-foreground)]">
-            <Sparkles className="size-5" />
-          </div>
-          <span style={{ fontFamily: "var(--font-display)", fontWeight: 700 }} className="text-xl">
-            FreeCRM<span className="text-[var(--brand)]">pRO</span>
-          </span>
-        </div>
-
-        <h1 className="mb-1">{mode === "signin" ? "Welcome back" : "Create your account"}</h1>
-        <p className="mb-6 text-sm text-muted-foreground">
-          {mode === "signin" ? "Sign in to your workspace." : "Start managing your leads in minutes."}
-        </p>
-
-        <form onSubmit={submit} className="space-y-4">
-          {mode === "signup" && (
-            <div className="space-y-1.5">
-              <Label>Name</Label>
-              <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Jane Doe" />
-            </div>
+    <div className="flex h-full w-full items-center justify-center p-4">
+      <div className="glass-modal relative w-full max-w-md overflow-hidden rounded-[24px] border border-white/20 p-8 shadow-2xl dark:border-white/10 animate-in zoom-in-95 fade-in duration-500 ease-out">
+        <div className="pointer-events-none absolute -right-20 -top-20 size-40 rounded-full bg-brand/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-20 size-40 rounded-full bg-blue-500/20 blur-3xl" />
+        
+        <div className="relative z-10">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="size-4" />
+              Back to home
+            </button>
           )}
-          <div className="space-y-1.5">
-            <Label>Email</Label>
-            <Input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" />
+          <div className="mb-6 flex items-center gap-2">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-brand/80 text-brand-foreground shadow-lg">
+              <Sparkles className="size-5" />
+            </div>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700 }} className="text-2xl text-foreground">
+              FreeCRM<span className="text-[var(--brand)]">pRO</span>
+            </span>
           </div>
-          <div className="space-y-1.5">
-            <Label>Password</Label>
-            <Input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
-          </div>
 
-          {error && <p className="text-sm text-[var(--destructive)]">{error}</p>}
+          <h1 className="mb-1 text-2xl font-semibold text-foreground tracking-tight">
+            {mode === "signin" ? "Welcome back" : "Create your account"}
+          </h1>
+          <p className="mb-6 text-sm text-muted-foreground">
+            {mode === "signin" ? "Sign in to your workspace." : "Start managing your leads in minutes."}
+          </p>
 
-          <Button type="submit" className="w-full" disabled={busy}>
-            {busy && <Loader2 className="size-4 animate-spin" />}
-            {mode === "signin" ? "Sign in" : "Create account"}
-          </Button>
-        </form>
+          <form onSubmit={submit} className="space-y-4">
+            {mode === "signup" && (
+              <div className="space-y-1.5">
+                <Label>Name</Label>
+                <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Jane Doe" className="glass-input" />
+              </div>
+            )}
+            <div className="space-y-1.5">
+              <Label>Email</Label>
+              <Input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" className="glass-input" />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Password</Label>
+              <Input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="glass-input" />
+            </div>
 
-        <p className="mt-5 text-center text-sm text-muted-foreground">
-          {mode === "signin" ? "No account yet?" : "Already have an account?"}{" "}
-          <button
-            onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); }}
-            className="text-[var(--brand)]"
-          >
-            {mode === "signin" ? "Sign up" : "Sign in"}
-          </button>
-        </p>
+            {error && <p className="text-sm text-[var(--destructive)]">{error}</p>}
+
+            <Button type="submit" className="w-full shadow-lg" disabled={busy}>
+              {busy && <Loader2 className="mr-2 size-4 animate-spin" />}
+              {mode === "signin" ? "Sign in" : "Create account"}
+            </Button>
+          </form>
+
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            {mode === "signin" ? "No account yet?" : "Already have an account?"}{" "}
+            <button
+              onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); }}
+              className="font-medium text-[var(--brand)] hover:underline"
+            >
+              {mode === "signin" ? "Sign up" : "Sign in"}
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );

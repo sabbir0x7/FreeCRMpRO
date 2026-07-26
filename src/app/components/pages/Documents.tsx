@@ -92,10 +92,10 @@ export function Documents() {
           />
         </div>
       ) : (
-        <div className="divide-y overflow-hidden rounded-xl border bg-card">
+        <div className="glass-surface divide-y divide-white/10 dark:divide-white/5 overflow-hidden rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
           {shown.map((d) => (
-            <div key={d.id} className="group flex flex-wrap items-center gap-3 p-3">
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]"><File className="size-4" /></div>
+            <div key={d.id} className="group flex flex-wrap items-center gap-3 p-3 transition-colors hover:bg-white/5 dark:hover:bg-white/5">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand shadow-sm"><File className="size-4" /></div>
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm" style={{ fontWeight: 500 }}>{d.name}.{d.ext}</div>
                 <div className="text-xs text-muted-foreground">{d.sizeKb} KB{linkedLabel(d) ? ` · ${linkedLabel(d)}` : ""}</div>

@@ -71,9 +71,9 @@ export function Calls() {
             const contact = contacts.find((c) => c.id === call.contactId);
             const Icon = call.outcome === "no-answer" ? PhoneMissed : call.direction === "inbound" ? PhoneIncoming : PhoneOutgoing;
             return (
-              <div key={call.id} className="group rounded-xl border bg-card p-4">
+              <div key={call.id} className="glass-surface group rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]"><Icon className="size-4" /></div>
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand shadow-sm"><Icon className="size-4" /></div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-sm" style={{ fontWeight: 500 }}>{contact?.name ?? "Unknown contact"}</span>
@@ -83,13 +83,13 @@ export function Calls() {
                         <button title="Click to call" onClick={() => toast.info(`Dialing ${contact.name}… (integration placeholder)`)} className="ml-auto flex items-center gap-1 text-xs text-[var(--brand)]"><Phone className="size-3" /> Call</button>
                       )}
                     </div>
-                    {call.notes && <p className="mt-1.5 text-sm text-foreground/80">{call.notes}</p>}
-                    <div className="mt-2 rounded-lg bg-[var(--brand-soft)]/50 p-2.5">
+                    {call.notes && <p className="mt-1.5 text-sm text-muted-foreground">{call.notes}</p>}
+                    <div className="glass-surface mt-2 rounded-lg border border-brand/10 bg-brand/5 p-2.5 shadow-sm">
                       <div className="mb-1 flex items-center justify-between">
                         <AiChip>AI summary</AiChip>
                         <button onClick={() => regenerate(call)} className="flex items-center gap-1 text-[11px] text-[var(--brand)]"><Sparkles className="size-3" /> Regenerate</button>
                       </div>
-                      <p className="text-xs text-foreground/80">{call.summary}</p>
+                      <p className="text-xs text-muted-foreground">{call.summary}</p>
                     </div>
                   </div>
                   <button onClick={() => { dispatch({ type: "call/delete", id: call.id }); toast.success("Call deleted"); }} className="text-muted-foreground opacity-0 transition-opacity hover:text-[var(--destructive)] group-hover:opacity-100"><Trash2 className="size-4" /></button>

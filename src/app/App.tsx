@@ -95,15 +95,18 @@ function Gate() {
     );
   }
 
-  if (showAuth) {
-    return <AuthScreen onBack={() => setShowAuth(false)} />;
-  }
-
   return (
-    <LandingPage
-      onGetStarted={() => setShowAuth(true)}
-      onLogin={() => setShowAuth(true)}
-    />
+    <div className="relative h-screen w-screen overflow-hidden">
+      <LandingPage
+        onGetStarted={() => setShowAuth(true)}
+        onLogin={() => setShowAuth(true)}
+      />
+      {showAuth && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md animate-in fade-in duration-300">
+          <AuthScreen onBack={() => setShowAuth(false)} />
+        </div>
+      )}
+    </div>
   );
 }
 

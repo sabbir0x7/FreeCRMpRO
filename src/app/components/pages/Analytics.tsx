@@ -50,7 +50,7 @@ export function Analytics() {
               { label: "Won deals", value: String(won.length) },
               { label: "Conversion rate", value: `${conversion}%` },
             ].map((s) => (
-              <div key={s.label} className="rounded-xl border bg-card p-5">
+              <div key={s.label} className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm">
                 <div className="text-sm text-muted-foreground">{s.label}</div>
                 <div className="mt-2 text-2xl" style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>{s.value}</div>
               </div>
@@ -58,7 +58,7 @@ export function Analytics() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border bg-card p-5">
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm">
               <h3 className="mb-4">Deals by Stage</h3>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={funnel} layout="vertical" margin={{ left: 20 }}>
@@ -73,7 +73,7 @@ export function Analytics() {
               </ResponsiveContainer>
             </div>
 
-            <div className="rounded-xl border bg-card p-5">
+            <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-5 shadow-sm">
               <h3 className="mb-4">Pipeline Value by Segment</h3>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={bySegment}>

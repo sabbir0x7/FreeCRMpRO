@@ -75,12 +75,12 @@ export function Calendar() {
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <button onClick={() => shift(-1)} className="flex size-8 items-center justify-center rounded-lg border hover:bg-accent"><ChevronLeft className="size-4" /></button>
-          <button onClick={() => setCursor(new Date())} className="rounded-lg border px-3 py-1.5 text-sm hover:bg-accent">Today</button>
-          <button onClick={() => shift(1)} className="flex size-8 items-center justify-center rounded-lg border hover:bg-accent"><ChevronRight className="size-4" /></button>
+          <button onClick={() => shift(-1)} className="flex size-8 items-center justify-center rounded-lg border border-white/10 dark:border-white/5 transition-colors hover:bg-white/5 dark:hover:bg-white/5"><ChevronLeft className="size-4" /></button>
+          <button onClick={() => setCursor(new Date())} className="rounded-lg border border-white/10 dark:border-white/5 px-3 py-1.5 text-sm transition-colors hover:bg-white/5 dark:hover:bg-white/5">Today</button>
+          <button onClick={() => shift(1)} className="flex size-8 items-center justify-center rounded-lg border border-white/10 dark:border-white/5 transition-colors hover:bg-white/5 dark:hover:bg-white/5"><ChevronRight className="size-4" /></button>
           <span className="ml-2 text-sm" style={{ fontWeight: 600 }}>{label}</span>
         </div>
-        <div className="flex rounded-lg border p-0.5 text-sm">
+        <div className="glass-surface flex rounded-lg border border-white/10 dark:border-white/5 p-0.5 text-sm shadow-sm">
           {(["month", "week", "day"] as View[]).map((v) => (
             <button key={v} onClick={() => setView(v)} className={cn("rounded-md px-3 py-1 capitalize", view === v ? "bg-[var(--brand)] text-white" : "text-muted-foreground")}>{v}</button>
           ))}
@@ -95,13 +95,13 @@ export function Calendar() {
           action={<EventDialog defaultDate={format(cursor, "yyyy-MM-dd")} trigger={<Button><Plus className="size-4" /> Schedule your first event</Button>} />}
         />
       ) : view === "month" ? (
-        <div className="overflow-hidden rounded-xl border bg-card">
-          <div className="grid grid-cols-7 border-b text-center text-xs text-muted-foreground">
+        <div className="glass-surface overflow-hidden rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
+          <div className="grid grid-cols-7 border-b border-white/10 dark:border-white/5 text-center text-xs text-muted-foreground">
             {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => <div key={d} className="py-2">{d}</div>)}
           </div>
           <div className="grid grid-cols-7">
             {monthDays.map((day) => (
-              <div key={day.toISOString()} className={cn("min-h-24 border-b border-r p-1", !isSameMonth(day, cursor) && "bg-muted/30")}>
+              <div key={day.toISOString()} className={cn("min-h-24 border-b border-r border-white/10 dark:border-white/5 p-1", !isSameMonth(day, cursor) && "bg-white/5 dark:bg-white/5")}>
                 <div className={cn("mb-1 flex size-6 items-center justify-center rounded-full text-xs", isToday(day) && "bg-[var(--brand)] text-white")}>{format(day, "d")}</div>
                 <div className="space-y-0.5">{byDay(day).map((e) => <EventChip key={e.id} e={e} />)}</div>
               </div>
@@ -111,7 +111,7 @@ export function Calendar() {
       ) : view === "week" ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-7">
           {weekDays.map((day) => (
-            <div key={day.toISOString()} className="rounded-xl border bg-card p-2">
+            <div key={day.toISOString()} className="glass-surface rounded-xl border border-white/10 dark:border-white/5 p-2 shadow-sm">
               <div className={cn("mb-2 text-center text-xs", isToday(day) && "text-[var(--brand)]")}>{format(day, "EEE d")}</div>
               <div className="space-y-1">{byDay(day).map((e) => <EventChip key={e.id} e={e} />)}</div>
             </div>
@@ -120,11 +120,11 @@ export function Calendar() {
       ) : (
         <div className="space-y-2">
           {byDay(cursor).length === 0 ? (
-            <p className="rounded-xl border border-dashed p-6 text-center text-sm text-muted-foreground">No events on this day.</p>
+            <p className="rounded-xl border border-dashed border-white/20 dark:border-white/10 p-6 text-center text-sm text-muted-foreground">No events on this day.</p>
           ) : byDay(cursor).map((e) => {
             const contact = contacts.find((c) => c.id === e.contactId);
             return (
-              <div key={e.id} className="flex items-center gap-3 rounded-xl border bg-card p-4">
+              <div key={e.id} className="glass-surface flex items-center gap-3 rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
                 <div className="w-16 text-sm text-muted-foreground">{e.time}</div>
                 <span className={cn("size-2 rounded-full", typeColors[e.type])} />
                 <div className="flex-1">

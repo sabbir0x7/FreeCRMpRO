@@ -31,8 +31,9 @@ const valueItems = [
 
 export const ValueSection: React.FC = () => {
   return (
-    <section id="solutions" className="py-20 border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="solutions" className="py-20 border-t border-white/10 dark:border-white/5 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand/5 to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground text-center">
           Everything you need to manage customer relationships.
         </h2>
@@ -42,8 +43,8 @@ export const ValueSection: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-14">
           {valueItems.map((item, index) => (
-            <div key={index} className="text-center">
-              <div className="w-12 h-12 mx-auto rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <div key={index} className="text-center group">
+              <div className="w-14 h-14 mx-auto rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-4 transition-transform group-hover:scale-110 shadow-sm">
                 <item.icon className="w-6 h-6 text-brand" />
               </div>
               <h3 className="font-medium text-foreground text-sm">

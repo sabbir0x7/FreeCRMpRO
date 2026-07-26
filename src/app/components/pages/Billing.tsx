@@ -67,11 +67,11 @@ export function Billing() {
       </div>
 
       {/* Current status */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-[var(--brand-soft)] p-5">
+      <div className="glass-surface flex flex-wrap items-center justify-between gap-3 rounded-xl border border-brand/20 bg-brand/10 p-5 shadow-sm">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Current status</span>
-            <span className="rounded-full bg-[var(--brand)] px-2 py-0.5 text-xs text-[var(--brand-foreground)]">{statusLabel[status] ?? status}</span>
+            <span className="rounded-full bg-brand px-2 py-0.5 text-xs text-brand-foreground shadow-sm">{statusLabel[status] ?? status}</span>
           </div>
           <p className="mt-1 text-lg" style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>
             {isActive
@@ -92,12 +92,12 @@ export function Billing() {
             <div
               key={p.id}
               className={cn(
-                "relative flex flex-col rounded-xl border bg-card p-6",
-                p.badge && "border-[var(--brand)] ring-2 ring-[var(--brand)]/30",
+                "glass-surface relative flex flex-col rounded-xl border border-white/10 dark:border-white/5 p-6 shadow-sm transition-all",
+                p.badge && "border-[var(--brand)] shadow-lg shadow-brand/10 bg-brand/5",
               )}
             >
               {p.badge && (
-                <span className="absolute -top-3 left-6 rounded-full bg-[var(--brand)] px-3 py-0.5 text-xs text-[var(--brand-foreground)]" style={{ fontWeight: 500 }}>
+                <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-brand to-brand/80 px-3 py-0.5 text-xs text-brand-foreground shadow-[0_0_10px_rgba(109,40,217,0.3)]" style={{ fontWeight: 500 }}>
                   {p.badge}
                 </span>
               )}

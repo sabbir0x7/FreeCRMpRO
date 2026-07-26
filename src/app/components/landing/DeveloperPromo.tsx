@@ -31,7 +31,8 @@ export function DeveloperPromo() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-muted/30 border-t border-border/50">
+    <section className="py-20 lg:py-28 border-t border-white/10 dark:border-white/5 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand/5 to-transparent pointer-events-none" />
       <motion.div
         className="max-w-7xl mx-auto px-6"
         initial={{ opacity: 0, y: 20 }}
@@ -55,11 +56,11 @@ export function DeveloperPromo() {
           {/* Left Column: Image */}
           <div className="relative group">
             <div className="absolute inset-0 -z-10 bg-gradient-to-br from-orange-500/5 via-transparent to-purple-500/5 blur-3xl scale-110 rounded-3xl" />
-            <div className="rounded-2xl overflow-hidden border border-border/50 shadow-xl relative z-10">
+            <div className="glass-surface p-2 rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl relative z-10 backdrop-blur-md">
               <img
                 src={fiverrPoster.src || fiverrPoster}
                 alt="AI Web Apps and SaaS MVP development services"
-                className="w-full h-auto block"
+                className="w-full h-auto block rounded-2xl"
               />
             </div>
           </div>
@@ -78,9 +79,9 @@ export function DeveloperPromo() {
 
             <div className="mt-8 space-y-4">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex flex-row items-center">
-                  <div className="w-8 h-8 rounded-lg bg-brand-soft flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="w-[18px] h-[18px] text-brand" />
+                <div key={index} className="flex flex-row items-center group">
+                  <div className="w-10 h-10 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center flex-shrink-0 shadow-sm transition-transform group-hover:scale-110">
+                    <benefit.icon className="w-5 h-5 text-brand" />
                   </div>
                   <div className="ml-4">
                     <h4 className="text-sm font-medium text-foreground">
@@ -99,14 +100,14 @@ export function DeveloperPromo() {
                 href={FIVERR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand text-brand-foreground hover:bg-brand/90 px-6 py-3 rounded-lg text-sm font-medium transition-colors shadow-md"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-brand to-brand/80 text-brand-foreground hover:bg-brand/90 px-6 py-3 rounded-xl text-sm font-medium transition-all shadow-[0_0_15px_rgba(109,40,217,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(109,40,217,0.5)] border-none"
               >
                 Work With Me
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a
                 href="#hero"
-                className="inline-flex items-center gap-2 border border-border text-foreground hover:bg-muted px-6 py-3 rounded-lg text-sm font-medium transition-colors"
+                className="glass-surface inline-flex items-center gap-2 border border-white/20 dark:border-white/10 text-foreground px-6 py-3 rounded-xl text-sm font-medium transition-all hover:bg-white/50 dark:hover:bg-white/10 shadow-sm"
               >
                 Explore FreeCRMPro
                 <ArrowUp className="w-4 h-4" />

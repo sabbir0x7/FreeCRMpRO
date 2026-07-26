@@ -72,7 +72,7 @@ export function Contacts({ segment }: { segment: Segment | "all" }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search contacts…"
-              className="rounded-lg border bg-input-background py-1.5 pl-9 pr-3 text-sm outline-none focus:ring-2 focus:ring-[var(--brand)]/30"
+              className="glass-input rounded-lg border border-white/20 dark:border-white/10 bg-white/5 dark:bg-black/10 backdrop-blur-md py-1.5 pl-9 pr-3 text-sm outline-none focus:ring-2 focus:ring-[var(--brand)]/30 transition-all"
             />
           </div>
           <ContactDialog trigger={<Button><Plus className="size-4" /> Add contact</Button>} />
@@ -93,19 +93,19 @@ export function Contacts({ segment }: { segment: Segment | "all" }) {
           description="No contacts match your search or the selected segment filter."
         />
       ) : (
-        <div className="overflow-hidden rounded-xl border bg-card">
-          <div className="hidden grid-cols-[2fr_1fr_1fr_auto_auto] gap-4 border-b px-4 py-3 text-xs text-muted-foreground md:grid" style={{ fontWeight: 500 }}>
+        <div className="glass-surface overflow-hidden rounded-xl border border-white/20 dark:border-white/10 shadow-sm">
+          <div className="hidden grid-cols-[2fr_1fr_1fr_auto_auto] gap-4 border-b border-white/10 dark:border-white/5 px-4 py-3 text-xs text-muted-foreground md:grid" style={{ fontWeight: 500 }}>
             <span>Contact</span>
             <span>Status</span>
             <span>Value</span>
             <span>Score</span>
             <span></span>
           </div>
-          <div className="divide-y">
+          <div className="divide-y divide-white/10 dark:divide-white/5">
             {scoped.map((c) => {
               const score = scoreContact(c);
               return (
-                <div key={c.id} className="grid grid-cols-1 items-center gap-3 px-4 py-3 hover:bg-accent md:grid-cols-[2fr_1fr_1fr_auto_auto] md:gap-4">
+                <div key={c.id} className="grid grid-cols-1 items-center gap-3 px-4 py-3 hover:bg-white/5 dark:hover:bg-white/5 transition-colors md:grid-cols-[2fr_1fr_1fr_auto_auto] md:gap-4">
                   <div className="flex items-center gap-3">
                     <Avatar className="size-9"><AvatarFallback>{initials(c.name)}</AvatarFallback></Avatar>
                     <div className="min-w-0">
@@ -118,7 +118,7 @@ export function Contacts({ segment }: { segment: Segment | "all" }) {
                       </div>
                       <div className="mt-1 flex flex-wrap items-center gap-1">
                         {c.tags.map((t) => (
-                          <span key={t} className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">#{t}</span>
+                          <span key={t} className="rounded bg-white/10 dark:bg-white/5 border border-white/10 dark:border-white/5 px-1.5 py-0.5 text-[10px] text-muted-foreground">#{t}</span>
                         ))}
                         <span className="text-[10px] text-muted-foreground">· {relativeTime(c.lastActivityAt)}</span>
                       </div>
@@ -136,13 +136,13 @@ export function Contacts({ segment }: { segment: Segment | "all" }) {
                     <LogActivityDialog
                       contact={c}
                       trigger={
-                        <button className="flex size-8 items-center justify-center rounded-lg hover:bg-background" title="Log activity">
+                        <button className="flex size-8 items-center justify-center rounded-lg hover:bg-white/10 dark:hover:bg-white/10 transition-colors" title="Log activity">
                           <MessageSquarePlus className="size-4" />
                         </button>
                       }
                     />
                     <DropdownMenu>
-                      <DropdownMenuTrigger className="flex size-8 items-center justify-center rounded-lg hover:bg-background">⋯</DropdownMenuTrigger>
+                      <DropdownMenuTrigger className="flex size-8 items-center justify-center rounded-lg hover:bg-white/10 dark:hover:bg-white/10 transition-colors">⋯</DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => setEditing(c)}><Pencil className="size-4" /> Edit</DropdownMenuItem>
                         <DropdownMenuItem onClick={() => remove(c)} className="text-[var(--destructive)]"><Trash2 className="size-4" /> Delete</DropdownMenuItem>

@@ -16,7 +16,7 @@ export function LandingPage({
   onLogin: () => void;
 }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground selection:bg-brand/30">
       <LandingNavbar onGetStarted={onGetStarted} onLogin={onLogin} />
       <main>
         <HeroSection onGetStarted={onGetStarted} />

@@ -38,8 +38,8 @@ export function Inbox() {
           {feed.map((item) => {
             const Icon = icons[item.type] ?? StickyNote;
             return (
-              <div key={item.id} className="flex gap-3 rounded-xl border bg-card p-4">
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-soft)] text-[var(--brand)]">
+              <div key={item.id} className="glass-surface flex gap-3 rounded-xl border border-white/10 dark:border-white/5 p-4 shadow-sm">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 border border-brand/20 text-brand shadow-sm">
                   <Icon className="size-4" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -51,7 +51,7 @@ export function Inbox() {
                     </div>
                     <span className="text-xs text-muted-foreground">{relativeTime(item.at)}</span>
                   </div>
-                  <p className="mt-1 text-sm text-foreground/80">{item.text}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
                   <div className="mt-2">
                     <LogActivityDialog
                       contact={item.contact}

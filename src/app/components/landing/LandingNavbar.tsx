@@ -26,15 +26,15 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
   ];
 
   return (
-    <nav 
-      className={`sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-border transition-all duration-200 ${
-        isScrolled ? 'shadow-sm' : ''
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className="fixed left-0 right-0 top-4 z-50 mx-4 md:mx-auto max-w-6xl">
+      <div 
+        className={`glass-navbar flex h-16 items-center justify-between rounded-2xl px-6 transition-all duration-300 border border-white/20 dark:border-white/10 ${
+          isScrolled ? 'shadow-xl bg-white/60 dark:bg-black/40 backdrop-blur-xl' : 'shadow-sm bg-white/40 dark:bg-black/20 backdrop-blur-md'
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-1 cursor-pointer">
-          <img src={logoImg} alt="FreeCRMPro" className="h-8 w-auto" />
+          <img src={logoImg} alt="FreeCRMPro" className="h-8 w-auto drop-shadow-sm" />
         </div>
 
         {/* Center Nav Links - Desktop */}
@@ -43,7 +43,7 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
             <a 
               key={link.label} 
               href={link.href} 
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
@@ -54,13 +54,13 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
         <div className="hidden md:flex items-center gap-4">
           <button 
             onClick={onLogin} 
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-2"
+            className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-3 py-2"
           >
             Log In
           </button>
           <button 
             onClick={onGetStarted} 
-            className="bg-brand text-brand-foreground hover:bg-brand/90 rounded-lg px-5 py-2 text-sm font-medium transition-colors"
+            className="rounded-xl bg-gradient-to-r from-brand to-brand/80 px-5 py-2 text-sm font-medium text-brand-foreground shadow-[0_0_15px_rgba(109,40,217,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(109,40,217,0.5)]"
           >
             Get Started
           </button>
@@ -68,7 +68,7 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors" 
+          className="md:hidden p-2 text-foreground/70 hover:text-foreground transition-colors" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -78,12 +78,12 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
 
       {/* Mobile Menu Panel */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-white border-b border-border shadow-lg flex flex-col px-6 py-4 gap-4 transition-all">
+        <div className="md:hidden absolute top-20 left-0 w-full glass-surface rounded-2xl border border-white/20 shadow-xl flex flex-col px-6 py-6 gap-4 animate-in slide-in-from-top-4 fade-in duration-300">
           {navLinks.map((link) => (
             <a 
               key={link.label} 
               href={link.href} 
-              className="text-sm font-medium text-muted-foreground hover:text-foreground py-2 border-b border-border/30"
+              className="text-sm font-medium text-foreground/70 hover:text-foreground py-2 border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
@@ -92,13 +92,13 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
           <div className="flex flex-col gap-3 pt-2">
             <button 
               onClick={() => { setIsMobileMenuOpen(false); onLogin(); }} 
-              className="w-full text-left py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="w-full text-left py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               Log In
             </button>
             <button 
               onClick={() => { setIsMobileMenuOpen(false); onGetStarted(); }} 
-              className="w-full bg-brand text-brand-foreground rounded-lg px-5 py-3 text-sm font-medium text-center hover:bg-brand/90 transition-colors"
+              className="w-full rounded-xl bg-gradient-to-r from-brand to-brand/80 px-5 py-3 text-sm font-medium text-brand-foreground text-center shadow-[0_0_15px_rgba(109,40,217,0.3)] transition-all"
             >
               Get Started
             </button>

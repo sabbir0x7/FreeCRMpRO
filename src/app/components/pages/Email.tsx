@@ -146,12 +146,12 @@ export function Email() {
         />
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[280px_1fr]">
-          <div className="divide-y overflow-hidden rounded-xl border bg-card">
+          <div className="glass-surface divide-y divide-white/10 dark:divide-white/5 overflow-hidden rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
             {threads.map((t) => {
               const last = t.msgs[0];
               const active = activeThread?.contact.id === t.contact.id;
               return (
-                <button key={t.contact.id} onClick={() => setSelected(t.contact.id)} className={cn("flex w-full gap-2 p-3 text-left", active ? "bg-[var(--brand-soft)]" : "hover:bg-accent")}>
+                <button key={t.contact.id} onClick={() => setSelected(t.contact.id)} className={cn("flex w-full gap-2 p-3 text-left transition-colors", active ? "bg-brand/10" : "hover:bg-white/5 dark:hover:bg-white/5")}>
                   <Avatar className="size-8"><AvatarFallback>{t.contact.name.slice(0, 2).toUpperCase()}</AvatarFallback></Avatar>
                   <div className="min-w-0 flex-1">
                     <div className="flex justify-between gap-2"><span className="truncate text-sm" style={{ fontWeight: 500 }}>{t.contact.name}</span><span className="shrink-0 text-[11px] text-muted-foreground">{relativeTime(last.at)}</span></div>
@@ -163,21 +163,21 @@ export function Email() {
             })}
           </div>
 
-          <div className="rounded-xl border bg-card">
+          <div className="glass-surface rounded-xl border border-white/10 dark:border-white/5 shadow-sm">
             {activeThread ? (
               <>
-                <div className="flex items-center justify-between border-b p-4">
+                <div className="flex items-center justify-between border-b border-white/10 dark:border-white/5 p-4">
                   <div><div style={{ fontWeight: 600 }}>{activeThread.contact.name}</div><div className="text-xs text-muted-foreground">{activeThread.contact.email}</div></div>
                   <ComposeDialog presetContactId={activeThread.contact.id} trigger={<Button variant="outline" size="sm"><Send className="size-3.5" /> Reply</Button>} />
                 </div>
                 <div className="space-y-3 p-4">
                   {activeThread.msgs.map((m: Email) => (
-                    <div key={m.id} className={cn("rounded-lg border p-3", m.direction === "outbound" ? "bg-[var(--brand-soft)]/40" : "bg-background")}>
+                    <div key={m.id} className={cn("glass-surface rounded-lg border border-white/10 dark:border-white/5 p-3 shadow-sm", m.direction === "outbound" ? "bg-brand/5 border-brand/10" : "")}>
                       <div className="mb-1 flex items-center justify-between">
                         <span className="text-sm" style={{ fontWeight: 500 }}>{m.subject}</span>
                         <span className="text-[11px] uppercase text-muted-foreground">{m.direction}</span>
                       </div>
-                      <p className="whitespace-pre-wrap text-sm text-foreground/80">{m.body}</p>
+                      <p className="whitespace-pre-wrap text-sm text-muted-foreground">{m.body}</p>
                       <div className="mt-1 text-[11px] text-muted-foreground">{relativeTime(m.at)}</div>
                     </div>
                   ))}

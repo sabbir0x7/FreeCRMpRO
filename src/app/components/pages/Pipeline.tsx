@@ -29,16 +29,16 @@ function DealCard({ deal }: { deal: Deal }) {
   return (
     <div
       ref={drag as any}
-      className={cn("group cursor-grab rounded-lg border bg-card p-3 shadow-sm transition-opacity active:cursor-grabbing", isDragging && "opacity-40")}
+      className={cn("glass-surface group cursor-grab rounded-lg border border-white/10 dark:border-white/5 p-3 shadow-sm hover:shadow-md transition-all active:cursor-grabbing hover:-translate-y-0.5", isDragging && "opacity-40")}
     >
       <div className="flex items-start justify-between gap-2">
         <span className="text-sm" style={{ fontWeight: 500 }}>{deal.title}</span>
         <div className="flex items-center opacity-0 group-hover:opacity-100">
           <DealDialog
             existing={deal}
-            trigger={<button className="flex size-6 items-center justify-center rounded hover:bg-accent"><Pencil className="size-3.5" /></button>}
+            trigger={<button className="flex size-6 items-center justify-center rounded hover:bg-white/10 dark:hover:bg-white/10 transition-colors"><Pencil className="size-3.5" /></button>}
           />
-          <button onClick={() => dispatch({ type: "deal/delete", id: deal.id })} className="flex size-6 items-center justify-center rounded hover:bg-accent">
+          <button onClick={() => dispatch({ type: "deal/delete", id: deal.id })} className="flex size-6 items-center justify-center rounded hover:bg-white/10 dark:hover:bg-white/10 transition-colors">
             <Trash2 className="size-3.5 text-[var(--destructive)]" />
           </button>
           <GripVertical className="size-4 text-muted-foreground" />
@@ -50,7 +50,7 @@ function DealCard({ deal }: { deal: Deal }) {
           <Sparkles className="size-3" /> {probability}%
         </span>
       </div>
-      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
+      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10 dark:bg-white/5">
         <div className="h-full rounded-full" style={{ width: `${probability}%`, background: probColor }} />
       </div>
       <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
@@ -74,18 +74,18 @@ function Column({ stage, deals }: { stage: (typeof stages)[number]; deals: Deal[
   const total = deals.reduce((s, d) => s + d.value, 0);
 
   return (
-    <div ref={drop as any} className={cn("flex w-72 shrink-0 flex-col rounded-xl border bg-muted/40 transition-colors", over && "ring-2 ring-[var(--brand)]/40")}>
-      <div className="flex items-center justify-between border-b px-3 py-2.5">
+    <div ref={drop as any} className={cn("glass-surface flex w-72 shrink-0 flex-col rounded-xl border border-white/10 dark:border-white/5 shadow-sm transition-colors", over && "ring-2 ring-[var(--brand)]/40")}>
+      <div className="flex items-center justify-between border-b border-white/10 dark:border-white/5 px-3 py-2.5">
         <div className="flex items-center gap-2">
-          <span className="size-2 rounded-full" style={{ background: stage.accent }} />
+          <span className="size-2 rounded-full shadow-sm" style={{ background: stage.accent }} />
           <span className="text-sm" style={{ fontWeight: 500 }}>{stage.name}</span>
-          <span className="rounded-full bg-background px-1.5 text-xs text-muted-foreground">{deals.length}</span>
+          <span className="rounded-full bg-white/10 dark:bg-white/5 px-1.5 text-xs text-muted-foreground">{deals.length}</span>
         </div>
       </div>
       <div className="px-3 pb-1 pt-2 text-xs text-muted-foreground">{currency(total)}</div>
       <div className="flex-1 space-y-2 overflow-y-auto p-3 pt-1">
         {deals.map((d) => <DealCard key={d.id} deal={d} />)}
-        {deals.length === 0 && <div className="rounded-lg border border-dashed py-6 text-center text-xs text-muted-foreground">Drop deals here</div>}
+        {deals.length === 0 && <div className="rounded-lg border border-dashed border-white/20 dark:border-white/10 py-6 text-center text-xs text-muted-foreground">Drop deals here</div>}
       </div>
     </div>
   );

@@ -63,7 +63,8 @@ const plans = [
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onGetStarted }) => {
   return (
-    <section id="pricing" className="py-20 lg:py-28 border-t border-border/50">
+    <section id="pricing" className="py-20 lg:py-28 border-t border-white/10 dark:border-white/5 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center"
@@ -72,7 +73,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onGetStarted }) 
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-soft text-brand text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 border border-brand/20 text-brand text-sm font-medium mb-6 shadow-sm">
             <Sparkles size={16} />
             <span>Simple, Transparent Pricing</span>
           </div>
@@ -94,13 +95,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onGetStarted }) 
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative rounded-2xl border p-6 lg:p-8 flex flex-col transition-all duration-300 ${
                 plan.highlighted
-                  ? "bg-card border-brand shadow-xl shadow-brand/10 scale-[1.02]"
-                  : "bg-card border-border/50 shadow-sm hover:shadow-md hover:border-border"
+                  ? "glass-surface border-brand/50 shadow-2xl shadow-brand/20 scale-[1.02] bg-brand/5 backdrop-blur-xl"
+                  : "glass-surface border-white/20 dark:border-white/10 shadow-lg backdrop-blur-md hover:shadow-xl hover:-translate-y-1 hover:bg-white/50 dark:hover:bg-white/10"
               }`}
             >
               {plan.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1 bg-brand text-brand-foreground text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-brand to-brand/80 text-brand-foreground text-xs font-semibold px-3 py-1 rounded-full shadow-[0_0_10px_rgba(109,40,217,0.4)]">
                     {plan.badge}
                   </span>
                 </div>
@@ -108,10 +109,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onGetStarted }) 
 
               <div className="flex items-center gap-3 mb-4">
                 <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                     plan.highlighted
-                      ? "bg-brand text-brand-foreground"
-                      : "bg-brand-soft text-brand"
+                      ? "bg-gradient-to-br from-brand to-brand/80 text-brand-foreground shadow-md"
+                      : "bg-brand/10 border border-brand/20 text-brand shadow-sm"
                   }`}
                 >
                   <plan.icon size={20} />
@@ -146,10 +147,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onGetStarted }) 
 
               <button
                 onClick={onGetStarted}
-                className={`w-full py-3 rounded-lg text-sm font-medium transition-all ${
+                className={`w-full py-3 rounded-xl text-sm font-medium transition-all ${
                   plan.highlighted
-                    ? "bg-brand text-brand-foreground hover:bg-brand/90 shadow-md hover:shadow-lg"
-                    : "border border-border text-foreground hover:bg-muted"
+                    ? "bg-gradient-to-r from-brand to-brand/80 text-brand-foreground shadow-[0_0_15px_rgba(109,40,217,0.3)] hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(109,40,217,0.5)] border-none"
+                    : "glass-surface border border-white/20 dark:border-white/10 text-foreground hover:bg-white/50 dark:hover:bg-white/10 shadow-sm hover:scale-[1.02]"
                 }`}
               >
                 {plan.cta}

@@ -35,7 +35,7 @@ export function Properties() {
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {properties.map((p) => (
-            <div key={p.id} className="group overflow-hidden rounded-xl border bg-card">
+            <div key={p.id} className="glass-surface group overflow-hidden rounded-xl border border-white/10 dark:border-white/5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
               <div className="relative">
                 <ImageWithFallback src={p.image} alt={p.title} className="h-44 w-full object-cover" />
                 <span className={cn("absolute left-3 top-3 rounded-full px-2 py-0.5 text-xs", statusColors[p.status])} style={{ fontWeight: 500 }}>{p.status}</span>
@@ -54,7 +54,7 @@ export function Properties() {
                   </div>
                 )}
                 <div className="mt-3 text-xl" style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>{currency(p.price)}</div>
-                <div className="mt-3 flex items-center gap-4 border-t pt-3 text-sm text-muted-foreground">
+                <div className="mt-3 flex items-center gap-4 border-t border-white/10 dark:border-white/5 pt-3 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1"><Bed className="size-4" /> {p.beds}</span>
                   <span className="flex items-center gap-1"><Bath className="size-4" /> {p.baths}</span>
                   <span className="flex items-center gap-1"><Maximize className="size-4" /> {p.sqft.toLocaleString()} ft²</span>

@@ -31,7 +31,7 @@ const features = [
 
 export const FeaturesSection: React.FC = () => {
   return (
-    <section id="features" className="py-20 lg:py-28 bg-muted/30">
+    <section id="features" className="py-20 lg:py-28 relative">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl lg:text-4xl font-display font-bold text-foreground text-center">
           One CRM. Everything organized.
@@ -50,10 +50,10 @@ export const FeaturesSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border/50 p-8 hover:shadow-lg hover:border-brand/20 transition-all duration-300 group"
+              className="glass-surface rounded-2xl border border-white/20 dark:border-white/10 p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-white/50 dark:hover:bg-white/10 group backdrop-blur-md"
             >
-              <div className="w-11 h-11 rounded-lg bg-brand-soft flex items-center justify-center mb-5 group-hover:bg-brand transition-colors duration-300">
-                <feature.icon className="w-[22px] h-[22px] text-brand group-hover:text-brand-foreground transition-colors duration-300" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand to-brand/80 flex items-center justify-center mb-6 shadow-md transition-transform duration-300 group-hover:scale-110">
+                <feature.icon className="w-6 h-6 text-brand-foreground" />
               </div>
               <h3 className="text-lg font-display font-semibold text-foreground mb-2">
                 {feature.title}
