@@ -46,6 +46,10 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
             <a 
               key={link.label} 
               href={link.href} 
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               {link.label}
@@ -93,7 +97,13 @@ export const LandingNavbar: React.FC<LandingNavbarProps> = ({ onGetStarted, onLo
               key={link.label} 
               href={link.href} 
               className="text-sm font-medium text-foreground/70 hover:text-foreground py-2 border-b border-white/10"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                setTimeout(() => {
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
             >
               {link.label}
             </a>

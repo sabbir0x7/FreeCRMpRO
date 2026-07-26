@@ -146,7 +146,7 @@ function Gate() {
   }
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="relative min-h-screen w-full">
       <LandingPage
         onGetStarted={() => setShowAuth(true)}
         onLogin={() => setShowAuth(true)}
