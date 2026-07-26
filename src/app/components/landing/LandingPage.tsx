@@ -4,6 +4,7 @@ import { ValueSection } from "./ValueSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { ProductShowcase } from "./ProductShowcase";
 import { DeveloperPromo } from "./DeveloperPromo";
+import { PricingSection } from "./PricingSection";
 import { FinalCTA } from "./FinalCTA";
 import { LandingFooter } from "./LandingFooter";
 
@@ -23,6 +24,7 @@ export function LandingPage({
         <FeaturesSection />
         <ProductShowcase />
         <DeveloperPromo />
+        <PricingSection onGetStarted={onGetStarted} />
         <FinalCTA onGetStarted={onGetStarted} onLogin={onLogin} />
       </main>
       <LandingFooter onLogin={onLogin} />
