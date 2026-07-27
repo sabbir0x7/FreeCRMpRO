@@ -21,6 +21,7 @@ import { ContactMe } from "./components/pages/ContactMe";
 import { AuthScreen } from "./components/AuthScreen";
 import { UpgradeModal } from "./components/UpgradeModal";
 import { LandingPage } from "./components/landing/LandingPage";
+import AdminDashboard from "./components/pages/AdminDashboard";
 import { StoreProvider, type Segment } from "./store";
 import { AuthProvider, useAuth } from "./auth";
 import { SubscriptionProvider, useSubscription } from "./subscription";
@@ -92,6 +93,7 @@ function Workspace() {
         {page === "analytics" && <Analytics />}
         {page === "billing" && <Billing />}
         {page === "contact-me" && <ContactMe />}
+        {page === "admin" && <AdminDashboard />}
       </Layout>
       <UpgradeModal onGoToBilling={() => setPage("billing")} />
     </StoreProvider>

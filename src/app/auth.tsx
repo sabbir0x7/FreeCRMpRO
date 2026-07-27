@@ -5,6 +5,7 @@ interface AuthState {
   userId: string | null;
   email: string | null;
   accessToken: string | null;
+  isAdmin: boolean;
   loading: boolean;
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
@@ -87,6 +88,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         userId: session?.userId ?? null,
         email: session?.email ?? null,
         accessToken: session?.accessToken ?? null,
+        isAdmin: session?.email === "mdsabbir111x@gmail.com",
         loading,
         signUp,
         signIn,

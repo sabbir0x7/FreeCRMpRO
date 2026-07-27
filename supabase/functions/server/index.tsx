@@ -113,6 +113,94 @@ async function requireAccess(c: any): Promise<{ user: any; sub: Subscription } |
 }
 
 // ---------------------------------------------------------------------------
+// Admin
+// ---------------------------------------------------------------------------
+const ADMIN_EMAIL = "mdsabbir111x@gmail.com";
+
+async function requireAdmin(c: any): Promise<{ user: any } | Response> {
+  const { user, error } = await getUser(c);
+  if (error) return c.json({ error, code: "UNAUTHORIZED" }, 401);
+  if (user.email !== ADMIN_EMAIL) {
+    return c.json({ error: "Forbidden: Super Admin access required", code: "FORBIDDEN" }, 403);
+  }
+  return { user };
+}
+
+app.get(`${PREFIX}/admin/stats`, async (c) => {
+  const gate = await requireAdmin(c);
+  if (gate instanceof Response) return gate;
+  try {
+    const { data: usersData, error } = await supabaseAdmin.auth.admin.listUsers();
+    if (error) throw error;
+    
+    const users = usersData.users || [];
+    const keys = users.map(u => `subscription:${u.id}`);
+    const subs = await kv.mget(keys);
+    
+    let active = 0;
+    let trialing = 0;
+    
+    subs.forEach(s => {
+      if (s?.subscription_status === 'active') active++;
+      if (s?.subscription_status === 'trialing') trialing++;
+    });
+
+    return c.json({
+      totalUsers: users.length,
+      activeSubscriptions: active,
+      trialingSubscriptions: trialing
+    });
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+app.get(`${PREFIX}/admin/users`, async (c) => {
+  const gate = await requireAdmin(c);
+  if (gate instanceof Response) return gate;
+  try {
+    const { data: usersData, error } = await supabaseAdmin.auth.admin.listUsers();
+    if (error) throw error;
+    
+    const users = usersData.users || [];
+    const keys = users.map(u => `subscription:${u.id}`);
+    const subs = await kv.mget(keys);
+    
+    const result = users.map((u, i) => ({
+      id: u.id,
+      email: u.email,
+      name: u.user_metadata?.name || '',
+      createdAt: u.created_at,
+      subscription: subs[i] || newTrial(Date.parse(u.created_at)),
+    }));
+    
+    // Sort by newest first
+    result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    return c.json({ users: result });
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+app.post(`${PREFIX}/admin/update-subscription`, async (c) => {
+  const gate = await requireAdmin(c);
+  if (gate instanceof Response) return gate;
+  try {
+    const { targetUserId, updates } = await c.req.json();
+    if (!targetUserId || !updates) return c.json({ error: "Missing parameters" }, 400);
+
+    const sub = await getSubscription(targetUserId);
+    const updated = { ...sub, ...updates };
+    await kv.set(`subscription:${targetUserId}`, updated);
+
+    return c.json({ ok: true, subscription: updated });
+  } catch (err) {
+    return c.json({ error: String(err) }, 500);
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Gemini — server-side only. Falls back to deterministic templates without a key.
 // ---------------------------------------------------------------------------
 async function callGemini(prompt: string, system?: string): Promise<string | null> {

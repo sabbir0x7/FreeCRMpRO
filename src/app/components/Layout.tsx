@@ -22,6 +22,7 @@ import {
   Sun,
   Plus,
   ChevronDown,
+  ShieldAlert,
 } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { cn } from "./ui/utils";
@@ -58,7 +59,8 @@ export type Page =
   | "insights"
   | "analytics"
   | "billing"
-  | "contact-me";
+  | "contact-me"
+  | "admin";
 
 const nav: { id: Page; label: string; icon: React.ElementType; badge?: number }[] = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -97,7 +99,7 @@ export function Layout({
   children: React.ReactNode;
 }) {
   const [collapsed] = useState(false);
-  const { email, signOut } = useAuth();
+  const { email, signOut, isAdmin } = useAuth();
   const { status, daysLeft } = useSubscription();
   return (
     <div className="flex h-screen w-full overflow-hidden text-foreground">
@@ -132,6 +134,23 @@ export function Layout({
             );
           })}
         </nav>
+
+        {isAdmin && (
+          <div className="px-3 pb-2">
+            <button
+              onClick={() => setPage("admin")}
+              className={cn(
+                "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-200 ease-out",
+                page === "admin"
+                  ? "bg-red-500/15 text-red-500 shadow-sm font-medium dark:bg-red-500/20"
+                  : "text-muted-foreground hover:bg-red-500/5 hover:text-red-500"
+              )}
+            >
+              <ShieldAlert className="size-4 shrink-0" />
+              <span className="flex-1 text-left">Admin Panel</span>
+            </button>
+          </div>
+        )}
 
         <div className="border-t border-white/10 p-3">
           <div className="flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-black/5 dark:hover:bg-white/5">
